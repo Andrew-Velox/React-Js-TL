@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // "use strict"
+        d =34;
+
+        console.log(this)
+        let a = 43;
+        console.log(a);
+        let b={
+            a:43,
+            b:46,
+        }
+
+        document.addEventListener("click",function click(){
+            console.log("clicked");
+            let conf = confirm("Are you sure?");
+            console.log(conf)
+        });
+
+        setTimeout(() => {
+            console.log("hello")
+        }, 3000);
+        console.log("this is for testing")
+    </script>
+</head>
+<body>
+    <h1>hello</h1>
+</body>
+</html>

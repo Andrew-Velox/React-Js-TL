@@ -1,0 +1,3 @@
+[submodule "textutils"]
+	path = textutils
+	url = https://github.com/Andrew-Velox/React-Js-TL.git

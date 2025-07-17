@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 
 
 
+
+
 export default function TextForm({
     heading="Enter Text Here",
-    mode='ligt',
-    showAlert
+    mode='light',
+    showAlert,
 }){
 
     const handleUpClick = () =>{
@@ -29,40 +31,41 @@ export default function TextForm({
         let vowel_characters ="";
         let s = text;
         s = s.toLowerCase();
-        // console.log(s);
-        // console.log(text)
         for(let x=0; x<=text.length; x++){
             let get= s[x];
-            if(get==='a' || get==='e' || get==='i' || get==='o' || get==='u'){
+            if("aeiou".includes(get)){
                 vowel_characters+=text[x];
                 newText+=1;
             }
         }
         setText(text +"\nCharecters: "+vowel_characters + " | Count: " +newText.toString())
         showAlert("count Vowels Successfully","success");
-    }
+    };
 
     const handleOnChange = (event) =>{
-        // console.log("On Change");
-        setText(event.target.value)
-    }
+        setText(event.target.value);
+    };
+
     const wordCount = (text) =>{
+
+        if(text.length<1) return 0;
+
         let cnt = 0;
         
         for(let x=1; x<text.length; x++){
             console.log(text[x]);
-            if(text[x-1]!=" " && text[x]===" "){
+            if(text[x-1]!==" " && text[x]===" "){
                 cnt++; 
             }
         }
-        if(text[text.length-1]!=" ") cnt++;
+        if(text[text.length-1]!==" ") cnt++;
         // console.log(cnt);
         return cnt;
     }
     const charCount = (text) =>{
         let cnt = 0; 
         for(let x=0; x<text.length; x++){
-            if(text[x]!=" ") cnt++; 
+            if(text[x]!==" ") cnt++; 
         }
         
         return cnt;
@@ -89,7 +92,7 @@ export default function TextForm({
         <h2>Your Text Summery</h2>
         <hr />
         <p>{wordCount(text)} words and {charCount(text)} characters</p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>{(0.048 * charCount(text)/60)} minutes to read</p>
         <h2>Preview</h2>
         <hr />
         <p>{text.length>0 ? text:"Text is Empty"}</p>

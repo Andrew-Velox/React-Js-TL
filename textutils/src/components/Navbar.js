@@ -8,12 +8,16 @@ import PropTypes from 'prop-types'
 // }) 
 
 export default function Navbar({
-    title="this is required",
-    aboutText = "About",
+  title = 'Set Title Here',
+  aboutText = 'About',
+  mode = 'light',
+  toogleMode
 }) 
 {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    
+    <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
+      {/* console.log({mode}); */}
       <div className="container-fluid">
         <a className="navbar-brand" href="/"><b>X{title}X</b></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +33,21 @@ export default function Navbar({
             </li>
             
           </ul>
+          <div className="form-check form-switch">
+            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toogleMode} />
+            <label className={`mx-2 form-check-label text-${mode==='light'?'dark':'light'}`} htmlFor="flexSwitchCheckDefault"  >Green</label>
+          </div>
+          <div className="form-check form-switch">
+            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toogleMode} />
+            <label className={`mx-2 form-check-label text-${mode==='light'?'dark':'light'}`} htmlFor="flexSwitchCheckDefault"  >Blue</label>
+          </div>
+          <div className="form-check form-switch">
+            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toogleMode} />
+            <label className={`mx-2 form-check-label text-${mode==='light'?'dark':'light'}`} htmlFor="flexSwitchCheckDefault"  >Dark</label>
+          </div>
           <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-success" type="submit">Search</button>
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" style={{backgroundColor: mode==="light"? "white":"black", color: mode==="light"? "black":"white", placeholder: mode==="light"? "black":"white",}} />
+            <button className={`btn btn-outline-primary text-${mode==='light'?'dark':'light'}`} type="submit"><b>Search</b></button>
           </form>
         </div>
       </div>
@@ -45,7 +61,7 @@ Navbar.propTypes = {
     aboutText : PropTypes.string,
 }
 
-Navbar.defaultProps = {
-    title : 'Set Title Here',
-    aboutText : "set About Text Here",
-}
+// Navbar.defaultProps = {
+//     title : 'Set Title Here',
+//     aboutText : "set About Text Here",
+// }
